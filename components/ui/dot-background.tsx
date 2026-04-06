@@ -25,7 +25,6 @@ export function DotBackground({
       id={id}
       className={cn("relative w-full overflow-hidden transition-colors duration-500", className)}
       {...props}
-      // eslint-disable-next-line react/forbid-dom-props, @next/next/no-page-custom-font, react/no-unknown-property
       style={{
         backgroundImage: `radial-gradient(${dotColor} ${dotSize}px, transparent ${dotSize}px)`,
         backgroundSize: `${gap}px ${gap}px`,

@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/purity */
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
@@ -60,13 +58,17 @@ const paths = [
 
 export const BackgroundBeams = React.memo(
   ({ className }: { className?: string }) => {
-    const pathsConfig = React.useMemo(() => {
-      return paths.map(() => ({
+    const [pathsConfig, setPathsConfig] = React.useState<{y2: string, duration: number, delay: number}[]>([]);
+
+    React.useEffect(() => {
+      setPathsConfig(paths.map(() => ({
         y2: `${93 + Math.random() * 8}%`,
         duration: Math.random() * 10 + 10,
         delay: Math.random() * 10,
-      }));
+      })));
     }, []);
+
+    if (pathsConfig.length === 0) return null;
 
     return (
       <div
