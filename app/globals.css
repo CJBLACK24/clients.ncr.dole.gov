@@ -1,26 +1,208 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Design Tokens ─────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f0f4ff;
+  --foreground: #0a0a2e;
+  --surface: #e8f0fe;
+  
+  --card: #e8f0fe;
+  --card-foreground: #0a0a2e;
+  
+  --popover: #f0f4ff;
+  --popover-foreground: #0a0a2e;
+  
+  --primary: #2FA4FF;
+  --primary-foreground: #020013;
+  
+  --secondary: #d1e3ff;
+  --secondary-foreground: #010351;
+  
+  --muted: #cbd5e1;
+  --muted-foreground: #475569;
+  
+  --accent: #2FA4FF;
+  --accent-foreground: #020013;
+  
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(10, 10, 46, 0.1);
+  --input: rgba(10, 10, 46, 0.05);
+  --ring: #2FA4FF;
+  
+  --radius: 0.75rem;
+  --font-sans: var(--font-poppins);
+}
+
+.dark {
+  --background: #020013;
+  --foreground: #acbcd2;
+  --surface: #0a0b1e;
+  
+  --card: #0a0b1e;
+  --card-foreground: #acbcd2;
+  
+  --popover: #020013;
+  --popover-foreground: #acbcd2;
+  
+  --primary: #2FA4FF;
+  --primary-foreground: #020013;
+  
+  --secondary: #1a1b3a;
+  --secondary-foreground: #acbcd2;
+  
+  --muted: #1e293b;
+  --muted-foreground: #64748b;
+  
+  --accent: #2FA4FF;
+  --accent-foreground: #020013;
+  
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #2FA4FF;
+  
+  --dark-200: #0a0b1e;
+  --dark-400: #020013;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  
+  --font-sans: var(--font-poppins);
+  --font-heading: var(--font-poppins);
+  
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  
+  --color-dark-200: var(--dark-200);
+  --color-dark-400: var(--dark-400);
+  
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dole-navy);
+}
+
+/* ─── Animations ────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* ─── Gallery shimmer ───────────────────────────────────── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection {
+  background: rgba(1, 4, 136, 0.15);
+  color: #010351;
+}
+
+/* ─── Image loading placeholder ─────────────────────────── */
+img {
+  background-color: #f1f5f9;
+}
+
+/* ─── Meteor Effect ────────────────────────────────────────── */
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor-effect {
+  animation: meteor 5s linear infinite;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  
+  .bg-grid-pattern {
+    background-image: linear-gradient(45deg, var(--border) 1px, transparent 1px), linear-gradient(-45deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
 }
