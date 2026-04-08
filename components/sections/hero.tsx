@@ -36,7 +36,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="relative z-10 w-full max-w-4xl"
         >
-          <h1 className="text-pretty text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-[1.15]">
+          <h1 className="text-pretty text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-5xl leading-[1.15]">
             Welcome to{" "}
             <span className="text-primary">DOLE-NCR Client Portal</span>
           </h1>
@@ -46,10 +46,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg leading-relaxed"
+          className="mx-auto max-w-3xl text-pretty text-base text-muted-foreground md:text-lg leading-relaxed"
         >
-          Delivering simple and improved technology solutions for easier and
-          faster transactions.
+          Delivering simple and improved technology solutions for easier and faster transactions.
           <br className="hidden md:block" />
           Your unified hub for e-SEnA requests, SSS certifications, and labor
           compliance.
