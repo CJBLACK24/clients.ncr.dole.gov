@@ -14,7 +14,7 @@ export const BentoGrid = ({
     <div
       className={cn(
         "mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-[18rem] md:grid-cols-3",
-        className
+        className,
       )}
     >
       {children}
@@ -38,28 +38,28 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "group/bento flex flex-col justify-between space-y-4 rounded-[40px] border border-border bg-surface/40 p-8 shadow-sm transition-all duration-500 hover:border-primary/40 hover:bg-surface hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 backdrop-blur-md dark:bg-surface/20",
-        className
+        "group/bento flex flex-col justify-between space-y-4 rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-sm",
+        className,
       )}
     >
       {header && (
-        <div className="flex h-full min-h-[6rem] w-full items-center justify-center rounded-[32px] bg-gradient-to-br from-surface to-transparent transition-all duration-500 group-hover/bento:from-primary/10 group-hover/bento:to-transparent overflow-hidden border border-border/50">
+        <div className="flex h-full min-h-[6rem] w-full items-center justify-center rounded-lg bg-surface overflow-hidden">
           {header}
         </div>
       )}
-      <div className="transition-all duration-500 group-hover/bento:translate-x-2 px-2">
+      <div className="px-1">
         {icon && (
-          <div className="mb-4 text-primary transition-transform duration-500 group-hover/bento:scale-110">
+          <div className="mb-3 text-primary">
             {icon}
           </div>
         )}
         {title && (
-          <h3 className="mb-2 text-xl font-black tracking-tight text-foreground uppercase italic decoration-primary decoration-2">
+          <h3 className="mb-1.5 text-base font-semibold text-foreground">
             {title}
           </h3>
         )}
         {description && (
-          <p className="text-sm leading-relaxed text-foreground/60 font-medium italic">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             {description}
           </p>
         )}

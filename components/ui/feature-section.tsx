@@ -21,25 +21,25 @@ export function FeatureSection({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
       className={cn(
-        "flex flex-col items-center gap-8 md:flex-row",
+        "flex flex-col items-center gap-6 md:flex-row",
         isReversed && "md:flex-row-reverse",
-        className
+        className,
       )}
     >
       {/* Icon block */}
-      <div className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-2xl bg-[#010488]/5 text-[#010488] transition-colors duration-300 hover:bg-[#010488]/10">
+      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
         {icon}
       </div>
 
       {/* Text */}
       <div className={cn("text-center md:text-left", isReversed && "md:text-right")}>
-        <h3 className="text-xl font-bold text-[#010351]">{title}</h3>
-        <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-500">
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+        <p className="mt-1.5 max-w-lg text-sm leading-relaxed text-muted-foreground">
           {description}
         </p>
       </div>

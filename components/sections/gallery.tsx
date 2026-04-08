@@ -57,21 +57,20 @@ function GalleryCard({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="relative cursor-pointer overflow-hidden rounded-3xl"
+      transition={{ duration: 0.4, delay: index * 0.04 }}
+      className="relative cursor-pointer overflow-hidden rounded-xl"
     >
       <DirectionAwareHover
-        className="w-full h-[300px]"
+        className="w-full h-[280px]"
         overlay={
           <div className="flex flex-col gap-2 text-center">
-            <p className="text-xl font-black text-foreground italic uppercase tracking-tight">{image.title}</p>
-            <p className="text-sm font-medium text-foreground/60 leading-relaxed truncate">{image.description}</p>
-            <div className="mt-6 flex h-10 w-10 mx-auto items-center justify-center rounded-2xl bg-primary/10 transition-all group-hover:bg-primary group-hover:text-primary-foreground border border-primary/20">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M15 3h6v6" /><path d="M10 14L21 3" /></svg>
-            </div>
+            <p className="text-lg font-semibold text-foreground">{image.title}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed truncate">
+              {image.description}
+            </p>
           </div>
         }
       >
@@ -79,7 +78,7 @@ function GalleryCard({
           src={image.src}
           alt={image.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </DirectionAwareHover>
@@ -101,15 +100,15 @@ function Lightbox({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 p-4 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
-        initial={{ scale: 0.85, opacity: 0 }}
+        initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.85, opacity: 0 }}
+        exit={{ scale: 0.9, opacity: 0 }}
         transition={{ type: "spring", damping: 25 }}
-        className="relative max-h-[85vh] max-w-4xl overflow-hidden rounded-[40px] bg-background border border-border shadow-[0_0_50px_rgba(47,164,255,0.15)]"
+        className="relative max-h-[85vh] max-w-4xl overflow-hidden rounded-2xl bg-card border border-border shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative h-[60vh] w-[80vw] max-w-4xl border-b border-border">
@@ -121,22 +120,24 @@ function Lightbox({
             sizes="80vw"
           />
         </div>
-        <div className="p-8">
-          <h3 className="text-2xl font-black text-foreground italic uppercase tracking-tight">{image.title}</h3>
-          <p className="mt-2 text-base text-foreground/50 font-medium leading-relaxed">{image.description}</p>
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-foreground">{image.title}</h3>
+          <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+            {image.description}
+          </p>
         </div>
         <button
           onClick={onClose}
-          className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-background/50 text-foreground border border-border backdrop-blur-sm transition-all hover:bg-background hover:scale-110"
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg bg-background/60 text-foreground border border-border backdrop-blur-sm transition-all hover:bg-background"
           aria-label="Close"
         >
           <svg
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
@@ -155,26 +156,29 @@ export function GallerySection() {
   >(null);
 
   return (
-    <section id="gallery" className="bg-background px-6 py-24 transition-colors duration-500">
+    <section
+      id="gallery"
+      className="bg-background px-6 py-24 transition-colors duration-300"
+    >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mb-14 text-center"
         >
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary italic">
+          <span className="text-xs font-medium uppercase tracking-widest text-primary">
             Visual Showcase
           </span>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-foreground sm:text-4xl italic">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
             DOLE-NCR Gallery
           </h2>
-          <p className="mx-auto mt-6 max-w-lg text-base text-foreground/60 font-medium leading-relaxed">
+          <p className="mx-auto mt-4 max-w-lg text-sm text-muted-foreground leading-relaxed">
             Highlights from our events, programs, and daily operations serving
             the workers and businesses of the National Capital Region.
           </p>
-          <div className="mx-auto mt-6 h-1 w-24 rounded-full bg-primary" />
+          <div className="mx-auto mt-4 h-0.5 w-16 rounded-full bg-primary" />
         </motion.div>
 
         {/* Gallery Grid */}

@@ -9,61 +9,61 @@ export function FieldOfficesSection() {
     <section id="field-offices" className="bg-background px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mb-14 text-center"
         >
-          <span className="text-xs font-bold uppercase tracking-widest text-primary">
+          <span className="text-xs font-medium uppercase tracking-widest text-primary">
             Regional Network
           </span>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-foreground sm:text-4xl italic">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
             Field Offices
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/60 font-medium leading-relaxed">
-            Serving the National Capital Region through our strategically located field offices.
+          <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground leading-relaxed">
+            Serving the National Capital Region through our strategically
+            located field offices.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FIELD_OFFICES.map((office, i) => (
             <motion.div
               key={office.shortName}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="group relative flex flex-col overflow-hidden rounded-[40px] border border-border bg-surface p-8 transition-all hover:border-primary/30 hover:bg-surface/80 hover:shadow-2xl hover:shadow-primary/5"
+              transition={{ delay: i * 0.04 }}
+              className="group flex flex-col rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-sm"
             >
-              <div className="mb-6 flex flex-col items-center text-center">
-                <span className="text-4xl font-black tracking-tighter text-primary group-hover:scale-110 transition-transform duration-500 italic">
+              <div className="mb-4 flex items-center gap-3">
+                <span className="text-2xl font-bold text-primary">
                   {office.shortName}
                 </span>
-                <h3 className="mt-2 text-xl font-black text-foreground uppercase tracking-tight italic">
-                  {office.name.split(' ')[0]}
-                </h3>
-                <p className="text-[10px] font-black text-foreground/40 uppercase tracking-[0.2em] mt-2">
-                  ({office.coverage})
-                </p>
+                <div>
+                  <h3 className="text-sm font-semibold text-foreground">
+                    {office.name.split(" ")[0]}
+                  </h3>
+                  <p className="text-[10px] text-muted-foreground">
+                    {office.coverage}
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-4 text-xs font-medium">
-                <div className="flex gap-3 text-foreground/60 leading-relaxed italic">
-                  <MapPin className="h-4 w-4 shrink-0 text-primary/60" />
+              <div className="space-y-3 text-xs">
+                <div className="flex gap-2.5 text-muted-foreground leading-relaxed">
+                  <MapPin className="h-3.5 w-3.5 shrink-0 text-primary/60 mt-0.5" />
                   <p>{office.address}</p>
                 </div>
-                <div className="flex items-center gap-3 text-foreground/60 leading-tight">
-                  <Mail className="h-4 w-4 shrink-0 text-primary/60" />
+                <div className="flex items-center gap-2.5 text-muted-foreground">
+                  <Mail className="h-3.5 w-3.5 shrink-0 text-primary/60" />
                   <p className="truncate">{office.email}</p>
                 </div>
-                <div className="flex items-center gap-3 text-foreground/60 leading-tight">
-                  <Phone className="h-4 w-4 shrink-0 text-primary/60" />
+                <div className="flex items-center gap-2.5 text-muted-foreground">
+                  <Phone className="h-3.5 w-3.5 shrink-0 text-primary/60" />
                   <p>{office.phone}</p>
                 </div>
               </div>
-
-              {/* Subtle background glow */}
-              <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-primary/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </motion.div>
           ))}
         </div>

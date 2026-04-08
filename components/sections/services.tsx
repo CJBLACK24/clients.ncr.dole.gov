@@ -4,56 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { SERVICE_CATEGORIES } from "@/lib/constants";
+import { FileText, Shield, BarChart3 } from "lucide-react";
 
-/* ─── Inline SVG icons for each service type ────────────── */
 const CategoryIcons: Record<string, React.ReactNode> = {
-  requests: (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
-    </svg>
-  ),
-  permits: (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    </svg>
-  ),
-  reports: (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="12" y1="20" x2="12" y2="10" />
-      <line x1="18" y1="20" x2="18" y2="4" />
-      <line x1="6" y1="20" x2="6" y2="16" />
-    </svg>
-  ),
+  requests: <FileText className="h-5 w-5" />,
+  permits: <Shield className="h-5 w-5" />,
+  reports: <BarChart3 className="h-5 w-5" />,
 };
 
 export function ServicesSection() {
@@ -61,73 +17,61 @@ export function ServicesSection() {
   const activeCat = SERVICE_CATEGORIES.find((c) => c.id === activeTab)!;
 
   return (
-    <section id="services" className="relative overflow-hidden bg-background px-6 py-32">
-      {/* Decorative background elements */}
-      <div className="pointer-events-none absolute -top-[10%] -left-[5%] h-[400px] w-[400px] rounded-full bg-primary/5 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-[10%] -right-[5%] h-[400px] w-[400px] rounded-full bg-primary/5 blur-[120px]" />
-
-      <div className="relative mx-auto max-w-7xl">
-        {/* Modern Section Header */}
-        <div className="mb-16 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
+    <section id="services" className="relative bg-surface px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="mb-14 flex flex-col items-center text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-primary shadow-[0_0_15px_rgba(47,164,255,0.1)] backdrop-blur-sm"
+            className="mb-3 text-xs font-medium uppercase tracking-widest text-primary"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
             Portal Resources
-          </motion.div>
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+          </motion.span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl font-black tracking-tight text-foreground sm:text-5xl"
+            transition={{ delay: 0.05 }}
+            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
           >
             Service Categories
           </motion.h2>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-6 h-1 w-24 rounded-full bg-primary" 
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-4 h-0.5 w-16 rounded-full bg-primary"
           />
         </div>
 
-        {/* Categories Tab System */}
+        {/* Tab Filters */}
         <div id="services-list" className="scroll-mt-24">
-          <div className="mb-12 flex flex-wrap justify-center gap-3">
+          <div className="mb-10 flex flex-wrap justify-center gap-2">
             {SERVICE_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition-all duration-200",
+                  "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all",
                   activeTab === cat.id
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                    : "border border-border bg-surface/50 text-foreground/70 hover:border-primary/50 hover:text-primary",
+                    ? "bg-primary text-primary-foreground"
+                    : "border border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground",
                 )}
               >
-                <span
-                  className={
-                    activeTab === cat.id ? "text-primary-foreground" : "text-foreground/70"
-                  }
-                >
+                <span className={activeTab === cat.id ? "text-primary-foreground" : "text-muted-foreground"}>
                   {CategoryIcons[cat.id]}
                 </span>
                 {cat.label}
                 <span
                   className={cn(
-                    "flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold",
+                    "flex h-5 w-5 items-center justify-center rounded-md text-[10px] font-medium",
                     activeTab === cat.id
-                      ? "bg-white/20 text-white"
-                      : "bg-surface text-foreground/40 border border-border",
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "bg-muted text-muted-foreground",
                   )}
                 >
                   {cat.services.length}
@@ -136,50 +80,49 @@ export function ServicesSection() {
             ))}
           </div>
 
-          {/* Service Cards Grid */}
+          {/* Service Cards */}
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            transition={{ duration: 0.25 }}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {activeCat.services.map((service) => (
               <div
                 key={service.title}
-                className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface/40 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg dark:bg-surface/20"
+                className="flex h-full flex-col rounded-xl border border-border bg-card transition-all hover:border-primary/30 hover:shadow-sm"
               >
-                {/* Icon Header Area */}
-                <div className="flex items-center justify-center bg-gradient-to-br from-primary/5 to-transparent px-6 py-8">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-surface/60 text-primary shadow-sm border border-border">
+                {/* Icon Header */}
+                <div className="flex items-center gap-3 border-b border-border px-5 py-4">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     {CategoryIcons[activeTab]}
                   </div>
-                </div>
-
-                {/* Content Area */}
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 text-base font-black leading-tight text-foreground italic">
+                  <h3 className="text-sm font-semibold leading-snug text-foreground">
                     {service.title}
                   </h3>
-                  <p className="mb-6 line-clamp-3 flex-1 text-sm leading-relaxed text-foreground/60 font-medium">
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-5">
+                  <p className="mb-5 line-clamp-3 flex-1 text-xs leading-relaxed text-muted-foreground">
                     {service.description}
                   </p>
 
-                  {/* File Now Button */}
                   <a
                     href={service.link || "#"}
                     target={service.link ? "_blank" : undefined}
                     rel={service.link ? "noopener noreferrer" : undefined}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-black text-primary-foreground transition-all hover:brightness-110"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90"
                   >
                     File Now
                     <svg
-                      width="16"
-                      height="16"
+                      width="14"
+                      height="14"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2.5"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >

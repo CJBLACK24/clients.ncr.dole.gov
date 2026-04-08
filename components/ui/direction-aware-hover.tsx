@@ -64,8 +64,8 @@ export function DirectionAwareHover({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "group relative overflow-hidden rounded-[32px] bg-background border border-border shadow-sm transition-all duration-500 hover:shadow-2xl hover:border-primary/20",
-        className
+        "group relative overflow-hidden rounded-xl bg-card border border-border transition-all duration-300 hover:border-primary/30 hover:shadow-sm",
+        className,
       )}
     >
       {children}
@@ -74,12 +74,10 @@ export function DirectionAwareHover({
         animate={isHovered ? "hover" : "exit"}
         variants={variants}
         custom={direction}
-        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-        className="absolute inset-0 z-20 flex items-center justify-center bg-background/95 p-8 backdrop-blur-md"
+        transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+        className="absolute inset-0 z-20 flex items-center justify-center bg-background/90 p-6 backdrop-blur-sm"
       >
-        <div className="relative z-30 transition-transform duration-500 group-hover:scale-105">
-           {overlay}
-        </div>
+        <div className="relative z-30">{overlay}</div>
       </motion.div>
     </div>
   );
